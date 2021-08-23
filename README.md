@@ -49,3 +49,4 @@ this is the first release of the program bugs are to be expected.
 - try to make the chapter_fetch more efficient.
 - add a progress bar.
 - add option to use a custom manga name for folder. 
+- publish project as a python package.

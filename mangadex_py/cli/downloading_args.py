@@ -43,3 +43,13 @@ def _download_args(args_parser) :
             'data-saver will download a compressed image instead of upload quality.'
         )
     )
+    args.add_argument(
+        '--name',
+        type=str,
+        metavar="name",
+        default=None,
+        help=(
+            'change the quality mode from data to data-saver. '
+            'data-saver will download a compressed image instead of upload quality.'
+        )
+    )

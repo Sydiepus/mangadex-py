@@ -2,7 +2,7 @@
 A manga downloader for [MangaDex.org](https://mangadex.org/), Using the new [API](https://api.mangadex.org/docs.html).
 
 ## inspiration
-if these projects weren't available, mangadex-py would be a gallimaufry of python code.  
+If these projects weren't available, mangadex-py would be a gallimaufry of python code.  
 some snippets were taken from them.  
 1. [manga-py](https://github.com/manga-py/manga-py)
 2. [mangadex-dl](https://github.com/frozenpandaman/mangadex-dl)
@@ -34,6 +34,22 @@ python mangadex-py.py mangadexurl -l ru #download russian manga translation.
 python mangadex-py.py mangadexurl -ds data-save #download compressed images.
 
 python mangadex-py.py mangadexurl -d Books #will download to pwd/Books/manganame/
+
+python mangadex-py.py mangadexurl --name 'Manga Name' #change manga directory name
+
+python mangadex-py.py -F Manga.txt #will use pwd/Manga.txt as source of mangadexurl and manga name
+```
+## -F / --File option
+The file should be in the following format :  
+``` 
+url1, manga name
+url2
+url3, manga name
+```
+Example :
+```
+https://mangadex.org/title/32712fc7-466c-4f59-a481-9c608d374c66
+https://mangadex.org/title/e78a489b-6632-4d61-b00b-5206f5b8b22b, reincarnated as a slime
 ```
 ## Help
 ```
@@ -42,10 +58,10 @@ python mangadex-py.py -h
 python mangadex-py.py --help
 ```
 ## Notice
-this is the first release of the program bugs are to be expected.
+**This is the first release of the program bugs are to be expected.**
 ## TODO
-- complete the File support for bulk downloading.
-- add threaded download for zip fix.
-- try to make the chapter_fetch more efficient.
-- add a progress bar.
-- add option to use a custom manga name for folder. 
+- ~~Complete the File support for bulk downloading.~~ [Done]
+- Add threaded download for zip fix.
+- Try to make the chapter_fetch more efficient.
+- Add a progress bar.
+- ~~Add option to use a custom manga name for folder.~~ [Done]

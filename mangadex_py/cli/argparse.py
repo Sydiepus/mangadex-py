@@ -14,7 +14,7 @@ def initialize_args() -> ArgumentParser :
             'Version: ' + version
         )
     )
+    _required_args(args_parser)
     _gen_args(args_parser, version)
     _download_args(args_parser)
-    _required_args(args_parser)
     return args_parser

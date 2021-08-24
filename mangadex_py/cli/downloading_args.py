@@ -49,7 +49,6 @@ def _download_args(args_parser) :
         metavar="name",
         default=None,
         help=(
-            'change the quality mode from data to data-saver. '
-            'data-saver will download a compressed image instead of upload quality.'
+            'set a custom manga name for the folder and everything else. '
         )
     )

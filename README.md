@@ -11,7 +11,7 @@ some snippets were taken from them.
 - Python >= 3 should be fine.
 ## How to use
 
-1. Install the package
+1. Install the package  
 The project had to be named Sydiepus-mangadex-py because 'mangadex-py' was creating conflict with another package.
 ```
 pip3 install Sydiepus-mangadex-py 

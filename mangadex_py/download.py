@@ -23,7 +23,7 @@ def dl_chapter(manga_title, chapter_zip_name, chapter_folder, images_list, threa
             for i in images_list :
                 image_name = i.split("/")[-1].split("-")[0] + ".jpg"
                 full_image_name = os.path.join(chapter_folder, image_name)
-                download_methods.zip_fix_download(full_image_name, i, chapter_zip_name, chapter_folder)
+                download_methods.zip_fix_download(full_image_name, i, chapter_zip_name)
             add_image_zip(chapter_folder, chapter_zip_name)
 
         else :

@@ -37,7 +37,7 @@ def multithreaded_download(thread, chapter_folder, images_list):
             full_image_name = os.path.join(chapter_folder, image_name)
             threads.append(executor.submit(normal_download, full_image_name, i))
 
-def zip_fix_download(path, link, chapter_zip_name, chapter_folder) :
+def zip_fix_download(path, link, chapter_zip_name) :
     global retry
     retry = 0
     if not os.path.exists(path) :

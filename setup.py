@@ -8,6 +8,8 @@ author = meta.author
 repo_url = meta.repo_url
 author_email = meta.email
 
+REQUIREMENTS = ["requests", "tqdm"]
+
 long_description  =  """
 A manga downloader for MangaDex.org, Using the new API.
 
@@ -33,6 +35,7 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Operating System :: OS Independent",
     ],
+    install_requires=REQUIREMENTS,
     entry_points={
         "console_scripts": [
             "mangadex-py = mangadex_py.util:main",

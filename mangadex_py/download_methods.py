@@ -1,6 +1,7 @@
 import os
 import requests
 from concurrent.futures import ThreadPoolExecutor
+from tqdm import tqdm
 #import mangadex_py.report_health as report
 
 def normal_download(path, link) :
@@ -14,7 +15,6 @@ def normal_download(path, link) :
         if req.status_code == 200 :
             # success = True
             with open(path, 'wb') as f :
-                print(f"Downloading image {path}")
                 f.write(req.content)
                 f.close()
             #report.report(link, success, cached, len(req.content), int(req.elapsed.microseconds/1000))
@@ -32,7 +32,7 @@ def normal_download(path, link) :
 def multithreaded_download(thread, chapter_folder, images_list):
     threads = []
     with ThreadPoolExecutor(max_workers=thread) as executor:
-        for i in images_list :
+        for i in tqdm(images_list) :
             image_name = i.split("/")[-1].split("-")[0] + ".jpg"
             full_image_name = os.path.join(chapter_folder, image_name)
             threads.append(executor.submit(normal_download, full_image_name, i))
@@ -44,7 +44,6 @@ def zip_fix_download(path, link, chapter_zip_name) :
         req = requests.get(link)
         if req.status_code == 200 :
             with open(path, 'wb') as f :
-                print(f"Downloading image {path}")
                 f.write(req.content)
         else :
             retry += 1

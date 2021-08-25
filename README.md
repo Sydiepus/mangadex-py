@@ -65,5 +65,5 @@ mangadex-py.py --help
 - ~~Complete the File support for bulk downloading.~~ [Done]
 - Add threaded download for zip fix.
 - Try to make the chapter_fetch more efficient.
-- Add a progress bar.
+- ~~Add a progress bar.~~ [Done]
 - ~~Add option to use a custom manga name for folder.~~ [Done]

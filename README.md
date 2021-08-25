@@ -11,7 +11,7 @@ some snippets were taken from them.
 - Python >= 3 should be fine.
 ## How to use
 
-1. Install the package
+1. Install the package  
 The project had to be named Sydiepus-mangadex-py because 'mangadex-py' was creating conflict with another package.
 ```
 pip3 install Sydiepus-mangadex-py 
@@ -27,19 +27,19 @@ mangadex-py
 - By default no threads will be used.
 - By default the english language will be used.
 - By default the images will be download without any compression. 
-- By default a 'series.json' will created inside  manga_name folder like [Mylar](https://github.com/mylar3/mylar3/wiki/series.json-examples) to be used by comic server e.g  : [komga](https://github.com/gotson/komga)
+- By default a 'series.json' will be created inside manga_name folder like [Mylar](https://github.com/mylar3/mylar3/wiki/series.json-examples) to be used by a comic server e.g  : [komga](https://github.com/gotson/komga)
 ```
-mangadex-py.py mangadexurl -t 4 #download with 4 threads.
+mangadex-py mangadexurl -t 4 #download with 4 threads.
 
-mangadex-py.py mangadexurl -l ru #download russian manga translation.
+mangadex-py mangadexurl -l ru #download russian manga translation.
 
-mangadex-py.py mangadexurl -ds data-save #download compressed images.
+mangadex-py mangadexurl -ds data-save #download compressed images.
 
-mangadex-py.py mangadexurl -d Books #will download to pwd/Books/manganame/
+mangadex-py mangadexurl -d Books #will download to pwd/Books/manganame/
 
-mangadex-py.py mangadexurl --name 'Manga Name' #change manga directory name
+mangadex-py mangadexurl --name 'Manga Name' #change manga directory name
 
-mangadex-py.py -F Manga.txt #will use pwd/Manga.txt as source of mangadexurl and manga name
+mangadex-py -F Manga.txt #will use pwd/Manga.txt as source of mangadexurl and manga name
 ```
 ## -F / --File option
 The file should be in the following format :  
@@ -55,9 +55,9 @@ https://mangadex.org/title/e78a489b-6632-4d61-b00b-5206f5b8b22b, reincarnated as
 ```
 ## Help
 ```
-mangadex-py.py -h 
+mangadex-py -h 
 # or
-mangadex-py.py --help
+mangadex-py --help
 ```
 ## Notice
 **This is the first release of the program bugs are to be expected.**

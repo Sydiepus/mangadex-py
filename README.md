@@ -27,7 +27,7 @@ mangadex-py
 - By default no threads will be used.
 - By default the english language will be used.
 - By default the images will be download without any compression. 
-- By default a 'series.json' will created inside  manga_name folder like [Mylar](https://github.com/mylar3/mylar3/wiki/series.json-examples) to be used by comic server e.g  : [komga](https://github.com/gotson/komga)
+- By default a 'series.json' will be created inside manga_name folder like [Mylar](https://github.com/mylar3/mylar3/wiki/series.json-examples) to be used by a comic server e.g  : [komga](https://github.com/gotson/komga)
 ```
 mangadex-py mangadexurl -t 4 #download with 4 threads.
 

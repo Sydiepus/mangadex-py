@@ -7,7 +7,8 @@ chapters_fetched, base_url, chapters_images, images_links = list(), str(), list(
 avail_vol, avail_lang, avail_chap = list(), list(), list() #global non lang dependant stuff
 avail_id, avail_lang_chap_list, avail_lang_chap = list(), list(), list() #only when fetching with lang 
 
-def chapter_fetch(chap_hash) :
+def chapter_fetch(chap_hash) : 
+    chapters_fetched.clear()
     chapter_fetch_rep = requests.get(f"{api_url}{chap_hash}")
     chapter_fetch = json.loads(chapter_fetch_rep.text)
     chapters_fetched.append(chapter_fetch)
@@ -18,6 +19,7 @@ def base_url_fetch(lang_chap_list) :
     return base_url
 
 def get_chapter_images(chapters_fetched, quality_mode="data") : #data-saver for compressed images.
+    chapters_images.clear()
     for i in chapters_fetched :
         images = list()
         tmp_num = i["data"]["attributes"]["chapter"]
@@ -28,6 +30,7 @@ def get_chapter_images(chapters_fetched, quality_mode="data") : #data-saver for 
     return chapters_images
 
 def get_images_links(chapters_images, baseurl) :
+    images_links.clear()
     for i in chapters_images :
         tmp_links = list()
         chap_num = i[0]

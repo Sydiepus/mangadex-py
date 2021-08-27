@@ -51,5 +51,4 @@ def main(manga_title, chap_list, description, status, quality_mode, base_url, Ma
         chap_fetched = chapter_fetch(i[-1])
         chap_img = get_chapter_images(chap_fetched, quality_mode)
         images_link = get_images_links(chap_img, base_url)
-        for i in images_link :
-            dl_chapter(manga_title, chapter_zip_name, chapter_folder, i[-1], thread)
+        dl_chapter(manga_title, chapter_zip_name, chapter_folder, images_link[0][-1], thread)

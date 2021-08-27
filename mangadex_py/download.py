@@ -6,7 +6,7 @@ from tqdm import tqdm
 def new_download(manga_title, chapter_folder, images_list, thread) :
     if thread == 0 :
         for i in tqdm(images_list) :
-            image_name = i.split("/")[-1].split("-")[0] + ".jpg"
+            image_name = i.split("/")[-1].split("-")[0].split("x")[-1] + ".jpg"
             full_image_name = os.path.join(chapter_folder, image_name)
             download_methods.normal_download(full_image_name, i)
         zip_chapter_folder(chapter_folder, manga_title)
@@ -43,7 +43,6 @@ def main(manga_title, images_links, description, status, Manga_main_dir="Manga",
     write_series_json(manga_title, description, status, Manga_main_dir)
     for i in images_links : #get the tuple that contains the chapter num along with the links for the images
         chapter = f"chapter-{i[0]}"
-        print(len(i[-1]))
         chapter_folder = create_manga_chap_dir(manga_title, chapter)
         chapter_zip_name = chapter_zip_name_var(manga_title, chapter_folder)
         dl_chapter(manga_title, chapter_zip_name, chapter_folder, i[-1], thread)

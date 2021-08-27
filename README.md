@@ -18,6 +18,12 @@ pip3 install Sydiepus-mangadex-py
 # or
 pip install Sydiepus-mangadex-py
 ```
+### To upgrade 
+```
+pip install --upgrade Sydiepus-mangadex-py
+# or
+pip3 install --upgrade Sydiepus-mangadex-py
+```
 
 2. Use program.
 ``` 

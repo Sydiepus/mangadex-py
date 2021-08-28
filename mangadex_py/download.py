@@ -20,7 +20,8 @@ def dl_chapter(manga_title, chapter_zip_name, chapter_folder, images_list, threa
     if not os.path.exists(chapter_zip_name) :
         new_download(manga_title, chapter_folder, images_list, thread)
     elif len(get_images_in_zip(chapter_zip_name)) < len(images_list) :
-        chapter = os.path.split(chapter_zip_name)[-1].split(".")[0]
+        chapter = os.path.split(chapter_zip_name)[-1].split(".zip")[0]
+        print(chapter)
         force_create_manga_chap_dir(manga_title, chapter, Manga_main_dir) #https://stackoverflow.com/a/31414405
         print("Missing images in zip detected fixing it now.")
         zip_list = get_images_in_zip(chapter_zip_name)

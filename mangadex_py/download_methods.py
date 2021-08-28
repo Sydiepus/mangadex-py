@@ -32,6 +32,7 @@ def normal_download(path, link) :
         None
 
 def multithreaded_download(thread, chapter_folder, images_list):
+    print("progress bar for threaded download broken.")
     threads = []
     if thread <= 4 :
         with ThreadPoolExecutor(max_workers=thread) as executor:

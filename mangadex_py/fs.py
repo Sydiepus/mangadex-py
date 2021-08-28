@@ -65,5 +65,6 @@ def write_series_json(manga_title, description, status, Manga_main_dir="Manga") 
 
 def force_create_manga_chap_dir(manga_title, chapter, Manga_main_dir="Manga") :
     chap_dir = os.path.join(current_working_dir, Manga_main_dir, manga_title, chapter)
-    os.makedirs(chap_dir)
+    if not os.path.exists(chap_dir) :
+        os.makedirs(chap_dir)
     return str(chap_dir)

@@ -1,5 +1,5 @@
 import requests, json
-
+import time
 api_url = "https://api.mangadex.org/chapter/"
 api_url_manga = "https://api.mangadex.org/manga/"
 api_url_home = "https://api.mangadex.org/at-home/server/"
@@ -73,6 +73,7 @@ def get_manga_chapters_info(uuid) :
         get_info(resp)
         while offset < total_chap :
             chapter_req = requests.get(f"{api_url_manga}{uuid}/feed?order[chapter]=asc&order[volume]=asc&limit=500&offset={offset}")
+            time.sleep(0.25)
             resp = chapter_req.json()
             get_info(resp)
             offset += 500
@@ -101,6 +102,7 @@ def get_chapter_info_by_lang(uuid, total_chap, lang="en") :
         save_lang_time(resp)
         while offset < total_chap :
             chapter_req = requests.get(f"{api_url_manga}{uuid}/feed?order[chapter]=asc&order[volume]=asc&limit=500&translatedLanguage[]={lang}&offset={offset}")
+            time.sleep(0.25)
             resp = chapter_req.json()
             get_info(resp)
             for i in resp["results"] :

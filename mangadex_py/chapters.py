@@ -24,6 +24,9 @@ def get_chapter_images(chapters_fetched, quality_mode="data") : #dataSaver for c
         images = list()
         tmp_num = i["data"]["attributes"]["chapter"]
         tmp_hash = i["data"]["attributes"]["hash"]
+        if len(i["data"]["attributes"][quality_mode]) == 0 :
+            print("no images found for that chapter could be an external link.")
+            return None
         for k in i["data"]["attributes"][quality_mode] :
             images.append(k)
         chapters_images.append((tmp_num, tmp_hash, quality_mode, images))
@@ -111,3 +114,24 @@ def get_chapter_info_by_lang(uuid, total_chap, lang="en") :
                     continue
             offset += 500
     return avail_lang_chap_list, avail_lang_chap
+
+def scanlation_group_selector(list_chap, quality_mode) :
+    fetched_list = list()
+    images_list = list()
+    len_list = list()
+    for i in list_chap :
+        fetched_list.append(chapter_fetch(i[-1]))
+    for i in fetched_list :
+        images_list.append(get_chapter_images(i, quality_mode))
+    for i in images_list :
+        len_list.append(len(i))
+    index = len_list.index(max(len_list))
+    return images_list[index], index 
+
+def sort_chap_with_multi_scanlation(chapter, chapter_list) :
+    list_chap = list()
+    for i in chapter_list[0:] :
+        if chapter[0] == i[0] :
+            list_chap.append(i)
+            chapter_list.pop(chapter_list.index(i))
+    return list_chap

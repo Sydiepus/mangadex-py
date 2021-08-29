@@ -18,7 +18,7 @@ def base_url_fetch(lang_chap_list) :
     base_url = requests.get(f"{api_url_home}{lang_chap_list[0][-1]}").json()["baseUrl"]
     return base_url
 
-def get_chapter_images(chapters_fetched, quality_mode="data") : #data-saver for compressed images.
+def get_chapter_images(chapters_fetched, quality_mode="data") : #dataSaver for compressed images.
     chapters_images.clear()
     for i in chapters_fetched :
         images = list()
@@ -36,6 +36,8 @@ def get_images_links(chapters_images, baseurl) :
         chap_num = i[0]
         chap_hash = i[1]
         quality_mode = i[2]
+        if quality_mode == "dataSaver" :
+            quality_mode = "data-saver"
         for images in i[-1] :
             tmp_links.append(f"{baseurl}/{quality_mode}/{chap_hash}/{images}")
         images_links.append((chap_num, tmp_links))
@@ -87,7 +89,6 @@ def save_lang_time(resp) :
 
 def get_chapter_info_by_lang(uuid, total_chap, lang="en") : 
     offset = 0
-    index = 0
     chapter_req = requests.get(f"{api_url_manga}{uuid}/feed?order[chapter]=asc&order[volume]=asc&limit=500&translatedLanguage[]={lang}&offset={offset}")
     resp = chapter_req.json()
     if total_chap < 500 :

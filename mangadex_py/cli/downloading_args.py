@@ -39,7 +39,7 @@ def _download_args(args_parser) :
         metavar="quality_mode",
         default="data",
         help=(
-            'change the quality mode from data to data-saver. '
+            'change the quality mode from data to dataSaver. '
             'data-saver will download a compressed image instead of upload quality.'
         )
     )

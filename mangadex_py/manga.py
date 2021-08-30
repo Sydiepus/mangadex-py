@@ -1,5 +1,6 @@
 import requests
 import re 
+from .fs import remove_special_character
 
 api_url = "https://api.mangadex.org/"
 
@@ -33,9 +34,10 @@ def get_title(resp, langWithIndex) :
         return get_default_title(resp)
     else :
         if len(langWithIndex) > 1 :
-            return get_altTitles_lang(resp, langWithIndex[0], langWithIndex[1])
+            return remove_special_character(get_altTitles_lang(resp, langWithIndex[0], langWithIndex[1]))
         else :
-            return get_altTitles_lang(resp, langWithIndex[0])
+            return remove_special_character(get_altTitles_lang(resp, langWithIndex[0])) 
+            
 
 def get_default_description(resp) :
     description_default_lang = list(resp["data"]["attributes"]["description"])[0]

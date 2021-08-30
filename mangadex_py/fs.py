@@ -38,11 +38,7 @@ def create_manga_main_dir(Manga_main_dir="Manga") :
 
 def create_manga_dir(manga_title, Manga_main_dir="Manga") :
     if not os.path.exists(os.path.join(current_working_dir, Manga_main_dir, manga_title)) :
-        if isusingwindows() :
-            windows_friendly_title = remspc(manga_title)
-            os.makedirs(os.path.join(current_working_dir, Manga_main_dir, windows_friendly_title))
-        else :
-            os.makedirs(os.path.join(current_working_dir, Manga_main_dir, manga_title))
+        os.makedirs(os.path.join(current_working_dir, Manga_main_dir, manga_title))
     else :
         None
 
@@ -97,3 +93,9 @@ def force_create_manga_chap_dir(manga_title, chapter, Manga_main_dir="Manga") :
     if not os.path.exists(chap_dir) :
         os.makedirs(chap_dir)
     return str(chap_dir)
+
+def remove_special_character(string) :
+    if isusingwindows() :
+        return remspc(string)
+    else :
+        return string

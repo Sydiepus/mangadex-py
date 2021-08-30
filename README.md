@@ -1,4 +1,8 @@
 # Mangadex-py
+![PyPI](https://img.shields.io/pypi/v/Sydiepus-mangadex-py?color=gree&label=pypi%20package)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/Sydiepus-mangadex-py?color=gree)
+![GitHub issues](https://img.shields.io/github/issues/Sydiepus/mangadex-py)
+
 A manga downloader for [MangaDex.org](https://mangadex.org/), Using the new [API](https://api.mangadex.org/docs.html).
 
 ## Inspiration

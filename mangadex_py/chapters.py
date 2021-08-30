@@ -1,5 +1,7 @@
 import requests, json
 import time
+import sys
+
 api_url = "https://api.mangadex.org/chapter/"
 api_url_manga = "https://api.mangadex.org/manga/"
 api_url_home = "https://api.mangadex.org/at-home/server/"
@@ -115,6 +117,9 @@ def get_chapter_info_by_lang(uuid, total_chap, lang="en") :
                 except KeyError :
                     continue
             offset += 500
+    if avail_lang_chap_list == [] :
+        print(f"no chapters for '{lang}' were found.")
+        sys.exit(1)
     return avail_lang_chap_list, avail_lang_chap
 
 def scanlation_group_selector(list_chap, quality_mode) :

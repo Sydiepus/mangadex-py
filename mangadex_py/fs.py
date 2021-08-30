@@ -1,6 +1,31 @@
-import os, zipfile, pathlib, shutil, json
+import os, zipfile, pathlib, shutil, json, sys
 
 current_working_dir = str(pathlib.Path().resolve().absolute())
+
+def remspc(string) :
+    #special characters if the user is using windows.
+    #windows doesn't like these characters 
+    special_characters=[
+        "<",
+        ">",
+        ":",
+        "\"",
+        "/",
+        "\\",
+        "|",
+        "?",
+        "*"]
+    for i in string :
+        if i in special_characters :
+            t = string.replace(i, "")
+            return remspc(t)
+    return string
+
+def isusingwindows() : 
+    if sys.platform.startswith("win32") or sys.platform.startswith("cygwin") :
+        return True
+    else :
+        return False
 
 def chapter_zip_name_var(Manga_title, chapter_folder, Manga_main_dir="Manga") :
     return os.path.join(current_working_dir, Manga_main_dir, Manga_title, os.path.basename(chapter_folder)) + ".zip"
@@ -13,7 +38,11 @@ def create_manga_main_dir(Manga_main_dir="Manga") :
 
 def create_manga_dir(manga_title, Manga_main_dir="Manga") :
     if not os.path.exists(os.path.join(current_working_dir, Manga_main_dir, manga_title)) :
-        os.makedirs(os.path.join(current_working_dir, Manga_main_dir, manga_title))
+        if isusingwindows() :
+            windows_friendly_title = remspc(manga_title)
+            os.makedirs(os.path.join(current_working_dir, Manga_main_dir, windows_friendly_title))
+        else :
+            os.makedirs(os.path.join(current_working_dir, Manga_main_dir, manga_title))
     else :
         None
 

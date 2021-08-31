@@ -88,11 +88,15 @@ def save_lang_time(resp) :
     get_info(resp)
     for i in resp["results"] :
         try :
+            tmp_vol = i["data"]["attributes"]["volume"]
             tmp_chap = i["data"]["attributes"]["chapter"]
             if tmp_chap not in avail_lang_chap :
                 avail_lang_chap.append(tmp_chap)
             tmp_id = i["data"]["id"]
-            avail_lang_chap_list.append(("Oneshot", tmp_id) if tmp_chap == None else (tmp_chap, tmp_id))
+            if tmp_vol == None :
+                avail_lang_chap_list.append(("Oneshot", tmp_id) if tmp_chap == None else (tmp_chap, tmp_id))
+            else :
+                avail_lang_chap_list.append(("Oneshot", tmp_id) if tmp_chap == None else (tmp_chap, tmp_vol, tmp_id))
         except KeyError :
             continue
 
@@ -112,11 +116,15 @@ def get_chapter_info_by_lang(uuid, total_chap, lang="en") :
             get_info(resp)
             for i in resp["results"] :
                 try :
+                    tmp_vol = i["data"]["attributes"]["volume"]
                     tmp_chap = i["data"]["attributes"]["chapter"]
                     if tmp_chap not in avail_lang_chap :
                         avail_lang_chap.append(tmp_chap)
                     tmp_id = i["data"]["id"]
-                    avail_lang_chap_list.append(("Oneshot", tmp_id) if tmp_chap == None else (tmp_chap, tmp_id)) #https://github.com/frozenpandaman/mangadex-dl/blob/3883aa49d52e2c7c3f914f43a6e5fdd3aeebbedf/mangadex-dl.py#L102
+                    if tmp_vol == None :
+                        avail_lang_chap_list.append(("Oneshot", tmp_id) if tmp_chap == None else (tmp_chap, tmp_id)) #https://github.com/frozenpandaman/mangadex-dl/blob/3883aa49d52e2c7c3f914f43a6e5fdd3aeebbedf/mangadex-dl.py#L102
+                    else :
+                        avail_lang_chap_list.append(("Oneshot", tmp_id) if tmp_chap == None else (tmp_chap, tmp_vol, tmp_id))
                 except KeyError :
                     continue
             offset += 500
@@ -139,10 +147,16 @@ def scanlation_group_selector(list_chap, quality_mode) :
     index = len_list.index(max(len_list))
     return images_list[index]
 
-def sort_chap_with_multi_scanlation(chapter, chapter_list) :
+def sort_chap_with_multi_scanlation(chapter, chapter_list, have_vol) :
     list_chap = list()
-    for i in chapter_list[0:] :
-        if chapter[0] == i[0] :
-            list_chap.append(i)
-            chapter_list.pop(chapter_list.index(i))
+    if have_vol :
+        for i in chapter_list[0:] :
+            if (chapter[0], chapter[1]) == (i[0], i[1]) :
+                list_chap.append(i)
+                chapter_list.pop(chapter_list.index(i))
+    else :
+        for i in chapter_list[0:] :
+            if chapter[0] == i[0] :
+                list_chap.append(i)
+                chapter_list.pop(chapter_list.index(i))
     return list_chap

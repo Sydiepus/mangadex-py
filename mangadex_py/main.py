@@ -16,9 +16,10 @@ def main(url, langWithIndex, quality_mode, Manga_main_dir, thread, manga_name=No
     print("fetching 'chapter list by language' 'total chapters by language.'")
     chap_list, lang_chap = chapter.get_chapter_info_by_lang(uuid, totalchap, langWithIndex[0])
     if chap_list == None :
+        print(f"available languages are {language}")
         return 1
     print(f"found {len(lang_chap)} out of {totalchap} for {langWithIndex[0]}")
     print("getting a server url to download the images from.")
     base_url = chapter.base_url_fetch(chap_list)
     print("starting download")
-    download.main(title, chap_list, desc, status, quality_mode, base_url, Manga_main_dir, thread)
+    download.main(title, chap_list, desc, status, quality_mode, base_url, volumes, Manga_main_dir, thread)

@@ -41,21 +41,27 @@ def dl_chapter(manga_title, chapter_zip_name, chapter_folder, images_list, threa
         print(f"skipping {os.path.split(chapter_zip_name)[-1]}")
 
 
-def main(manga_title, chap_list, description, status, quality_mode, base_url, Manga_main_dir="Manga", thread=0) :
+def main(manga_title, chap_list, description, status, quality_mode, base_url, volumes, Manga_main_dir="Manga", thread=0) :
     create_manga_main_dir(Manga_main_dir)
     create_manga_dir(manga_title, Manga_main_dir)
     write_series_json(manga_title, description, status, Manga_main_dir)
     for i in chap_list[0:] : #get the tuple that contains the chapter num along with the chapter hash
-        chapter = f"chapter-{i[0]}"
+        if volumes != [] :
+            contain_vol = True
+            chapter = f"vol-{i[1]}-chapter-{i[0]}"
+        else :
+            chapter = f"chapter-{i[0]}"
+            contain_vol = False
         chapter_folder = create_manga_chap_dir(manga_title, chapter, Manga_main_dir)
         chapter_zip_name = chapter_zip_name_var(manga_title, chapter_folder, Manga_main_dir)
-        list_chap = sort_chap_with_multi_scanlation(i, chap_list)
+        list_chap = sort_chap_with_multi_scanlation(i, chap_list, contain_vol)
+        print(list_chap)
         if len(list_chap) > 1 :
             print(f"{len(list_chap)} scanlation for {chapter} found, selecting the 'best one'.")
             chap_img = scanlation_group_selector(list_chap, quality_mode)
             images_link = get_images_links([chap_img], base_url)
             if images_link == None :
-                return 1
+                continue
             dl_chapter(manga_title, chapter_zip_name, chapter_folder, images_link[0][-1], thread, Manga_main_dir, chapter)
         elif len(list_chap) == 1 :
             chap_fetched = chapter_fetch(i[-1])
@@ -64,7 +70,7 @@ def main(manga_title, chap_list, description, status, quality_mode, base_url, Ma
                 continue
             images_link = get_images_links(chap_img, base_url)
             if images_link == None :
-                return 1
+                continue
             dl_chapter(manga_title, chapter_zip_name, chapter_folder, images_link[0][-1], thread, Manga_main_dir, chapter)
         else :
             continue

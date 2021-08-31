@@ -6,7 +6,6 @@ import time
 #import mangadex_py.report_health as report
 
 def normal_download(path, link) :
-    retry = 0
     if not os.path.exists(path) :
         req = http.get(link)
         # try : #https://github.com/Proxymiity/MangaDex.py/blob/4445efe131db8fb38c7eda8b76548f93bc74c241/MangaDexPy/downloader.py#L31

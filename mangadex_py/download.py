@@ -57,7 +57,6 @@ def main(manga_title, chap_list, description, status, quality_mode, base_url, vo
         chapter_folder = create_manga_chap_dir(manga_title, chapter, Manga_main_dir)
         chapter_zip_name = chapter_zip_name_var(manga_title, chapter_folder, Manga_main_dir)
         list_chap = sort_chap_with_multi_scanlation(i, chap_list, contain_vol)
-        print(list_chap)
         if len(list_chap) > 1 :
             print(f"{len(list_chap)} scanlation for {chapter} found, selecting the 'best one'.")
             chap_img = scanlation_group_selector(list_chap, quality_mode)

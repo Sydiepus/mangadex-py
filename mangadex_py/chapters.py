@@ -1,5 +1,6 @@
-import requests, json
+import json
 import time
+import mangadex_py.http as http
 
 api_url = "https://api.mangadex.org/chapter/"
 api_url_manga = "https://api.mangadex.org/manga/"
@@ -10,13 +11,13 @@ avail_id, avail_lang_chap_list, avail_lang_chap = list(), list(), list() #only w
 
 def chapter_fetch(chap_hash) : 
     chapters_fetched.clear()
-    chapter_fetch_rep = requests.get(f"{api_url}{chap_hash}")
+    chapter_fetch_rep = http.get(f"{api_url}{chap_hash}")
     chapter_fetch = json.loads(chapter_fetch_rep.text)
     chapters_fetched.append(chapter_fetch)
     return chapters_fetched #returns a list containing a dict with the chapter and the images for that chapter.
 
 def base_url_fetch(lang_chap_list) :
-    base_url = requests.get(f"{api_url_home}{lang_chap_list[0][-1]}").json()["baseUrl"]
+    base_url = http.get(f"{api_url_home}{lang_chap_list[0][-1]}").json()["baseUrl"]
     return base_url
 
 def get_chapter_images(chapters_fetched, quality_mode="data") : #dataSaver for compressed images.
@@ -69,7 +70,7 @@ def get_info(resp) :
 
 def get_manga_chapters_info(uuid) :
     offset = 0
-    resp = requests.get(f"{api_url_manga}{uuid}/feed?order[chapter]=asc&order[volume]=asc&limit=500&offset={offset}").json()
+    resp = http.get(f"{api_url_manga}{uuid}/feed?order[chapter]=asc&order[volume]=asc&limit=500&offset={offset}").json()
     total_chap = resp["total"]
     if total_chap < 500 :
         get_info(resp)
@@ -77,7 +78,7 @@ def get_manga_chapters_info(uuid) :
         offset += 500
         get_info(resp)
         while offset < total_chap :
-            chapter_req = requests.get(f"{api_url_manga}{uuid}/feed?order[chapter]=asc&order[volume]=asc&limit=500&offset={offset}")
+            chapter_req = http.get(f"{api_url_manga}{uuid}/feed?order[chapter]=asc&order[volume]=asc&limit=500&offset={offset}")
             time.sleep(0.25)
             resp = chapter_req.json()
             get_info(resp)
@@ -102,7 +103,7 @@ def save_lang_time(resp) :
 
 def get_chapter_info_by_lang(uuid, total_chap, lang="en") : 
     offset = 0
-    chapter_req = requests.get(f"{api_url_manga}{uuid}/feed?order[chapter]=asc&order[volume]=asc&limit=500&translatedLanguage[]={lang}&offset={offset}")
+    chapter_req = http.get(f"{api_url_manga}{uuid}/feed?order[chapter]=asc&order[volume]=asc&limit=500&translatedLanguage[]={lang}&offset={offset}")
     resp = chapter_req.json()
     if total_chap < 500 :
         save_lang_time(resp)
@@ -110,7 +111,7 @@ def get_chapter_info_by_lang(uuid, total_chap, lang="en") :
         offset += 500
         save_lang_time(resp)
         while offset < total_chap :
-            chapter_req = requests.get(f"{api_url_manga}{uuid}/feed?order[chapter]=asc&order[volume]=asc&limit=500&translatedLanguage[]={lang}&offset={offset}")
+            chapter_req = http.get(f"{api_url_manga}{uuid}/feed?order[chapter]=asc&order[volume]=asc&limit=500&translatedLanguage[]={lang}&offset={offset}")
             time.sleep(0.25)
             resp = chapter_req.json()
             get_info(resp)

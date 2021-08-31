@@ -1,4 +1,4 @@
-import requests
+import mangadex_py.http as http
 import re 
 from .fs import remove_special_character
 
@@ -72,7 +72,7 @@ def get_status(resp) :
 #     return tags_list
 
 def get_info(uuid, *langWithIndex) :
-    request = requests.get(f"{api_url}manga/{uuid}")
+    request = http.get(f"{api_url}manga/{uuid}")
     if request.status_code == 200 :
         resp = request.json()
         title = get_title(resp, langWithIndex)

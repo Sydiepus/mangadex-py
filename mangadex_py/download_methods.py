@@ -1,5 +1,5 @@
 import os
-import requests
+import mangadex_py.http as http
 from concurrent.futures import ThreadPoolExecutor
 from tqdm import tqdm
 import time
@@ -8,7 +8,7 @@ import time
 def normal_download(path, link) :
     retry = 0
     if not os.path.exists(path) :
-        req = requests.get(link)
+        req = http.get(link)
         # try : #https://github.com/Proxymiity/MangaDex.py/blob/4445efe131db8fb38c7eda8b76548f93bc74c241/MangaDexPy/downloader.py#L31
         #     cached = True if req.headers["x-cache"] == "HIT" else False
         # except KeyError :  # No cache header returned: the client is at fault
@@ -20,16 +20,9 @@ def normal_download(path, link) :
                 f.close()
             time.sleep(0.25) #5 requests per second = 1 request per 0.2 seconds i suppose.
             #report.report(link, success, cached, len(req.content), int(req.elapsed.microseconds/1000))
-        else :
+        #else :
             #success = False
             #report.report(link, success, cached, len(req.content), int(req.elapsed.microseconds/1000))
-            retry += 1
-            if retry <= 3 :
-                normal_download(path, link)
-            else : 
-                print(f"failed to download image {path}")
-    else :
-        None
 
 def multithreaded_download(thread, chapter_folder, images_list):
     print("progress bar for threaded download broken.")
@@ -44,16 +37,9 @@ def multithreaded_download(thread, chapter_folder, images_list):
         print("please use less than 5 threads (4 and less) to stay within the rate limit.")
 
 def zip_fix_download(path, link, chapter_zip_name) :
-    retry = 0
     if not os.path.exists(path) :
-        req = requests.get(link)
+        req = http.get(link)
         if req.status_code == 200 :
             with open(path, 'wb') as f :
                 f.write(req.content)
             time.sleep(0.25)
-        else :
-            retry += 1
-            if retry <= 3 :
-                zip_fix_download(path, link, chapter_zip_name)
-            else : 
-                print(f"failed to download image {path}")

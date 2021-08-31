@@ -8,7 +8,7 @@ author = meta.author
 repo_url = meta.repo_url
 author_email = meta.email
 
-REQUIREMENTS = ["requests", "tqdm"]
+REQUIREMENTS = ["requests", "tqdm", "urllib3"]
 
 long_description  =  """
 A manga downloader for MangaDex.org, Using the new API.

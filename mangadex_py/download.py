@@ -48,7 +48,7 @@ def main(manga_title, chap_list, description, status, quality_mode, base_url, vo
     create_manga_dir(manga_title, Manga_main_dir)
     write_series_json(manga_title, description, status, Manga_main_dir)
     for i in chap_list[0:] : #get the tuple that contains the chapter num along with the chapter hash
-        if volumes != [] :
+        if volumes != [] and len(i) == 3:
             contain_vol = True
             chapter = f"vol-{i[1]}-chapter-{i[0]}"
         else :

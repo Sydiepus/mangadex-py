@@ -97,7 +97,7 @@ def save_lang_time(resp) :
             if tmp_vol == None :
                 avail_lang_chap_list.append(("Oneshot", tmp_id) if tmp_chap == None else (tmp_chap, tmp_id))
             else :
-                avail_lang_chap_list.append(("Oneshot", tmp_id) if tmp_chap == None else (tmp_chap, tmp_vol, tmp_id))
+                avail_lang_chap_list.append(("Oneshot", tmp_vol, tmp_id) if tmp_chap == None else (tmp_chap, tmp_vol, tmp_id))
         except KeyError :
             continue
 
@@ -125,7 +125,7 @@ def get_chapter_info_by_lang(uuid, total_chap, lang="en") :
                     if tmp_vol == None :
                         avail_lang_chap_list.append(("Oneshot", tmp_id) if tmp_chap == None else (tmp_chap, tmp_id)) #https://github.com/frozenpandaman/mangadex-dl/blob/3883aa49d52e2c7c3f914f43a6e5fdd3aeebbedf/mangadex-dl.py#L102
                     else :
-                        avail_lang_chap_list.append(("Oneshot", tmp_id) if tmp_chap == None else (tmp_chap, tmp_vol, tmp_id))
+                        avail_lang_chap_list.append(("Oneshot", tmp_vol, tmp_id) if tmp_chap == None else (tmp_chap, tmp_vol, tmp_id))
                 except KeyError :
                     continue
             offset += 500

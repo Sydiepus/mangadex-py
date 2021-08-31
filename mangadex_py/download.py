@@ -11,7 +11,6 @@ def new_download(manga_title, chapter_folder, images_list, thread, chapter) :
         for i in tqdm(images_list, desc=f"Downloading {chapter}") :
             image_name = re.findall(r"\d+", i.split("/")[-1].split("-")[0])[0] + ".jpg"
             full_image_name = os.path.join(chapter_folder, image_name)
-            continue
             download_methods.normal_download(full_image_name, i)
         zip_chapter_folder(chapter_folder, manga_title)
     else :

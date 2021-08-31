@@ -43,7 +43,11 @@ def get_images_links(chapters_images, baseurl) :
         if quality_mode == "dataSaver" :
             quality_mode = "data-saver"
         for images in i[-1] :
-            tmp_links.append(f"{baseurl}/{quality_mode}/{chap_hash}/{images}")
+            if "mangaplus" in images :
+                print("mangaplus links are not supported for now i hope")
+                return None
+            else :
+                tmp_links.append(f"{baseurl}/{quality_mode}/{chap_hash}/{images}")
         images_links.append((chap_num, tmp_links))
     return images_links
 
@@ -122,17 +126,18 @@ def get_chapter_info_by_lang(uuid, total_chap, lang="en") :
     return avail_lang_chap_list, avail_lang_chap
 
 def scanlation_group_selector(list_chap, quality_mode) :
-    fetched_list = list()
+    fetched_list = []
     images_list = list()
     len_list = list()
     for i in list_chap :
-        fetched_list.append(chapter_fetch(i[-1]))
+        fetch = chapter_fetch(i[-1])
+        fetched_list = fetched_list[:] + fetch
     for i in fetched_list :
-        images_list.append(get_chapter_images(i, quality_mode))
+        images_list = images_list[:] + get_chapter_images([i], quality_mode)
     for i in images_list :
-        len_list.append(len(i))
+        len_list.append(len(i[-1]))
     index = len_list.index(max(len_list))
-    return images_list[index], index 
+    return images_list[index]
 
 def sort_chap_with_multi_scanlation(chapter, chapter_list) :
     list_chap = list()

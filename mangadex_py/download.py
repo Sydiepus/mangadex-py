@@ -53,7 +53,9 @@ def main(manga_title, chap_list, description, status, quality_mode, base_url, Ma
         if len(list_chap) > 1 :
             print(f"{len(list_chap)} scanlation for {chapter} found, selecting the 'best one'.")
             chap_img = scanlation_group_selector(list_chap, quality_mode)
-            images_link = get_images_links(chap_img[0], base_url)
+            images_link = get_images_links([chap_img], base_url)
+            if images_link == None :
+                return 1
             dl_chapter(manga_title, chapter_zip_name, chapter_folder, images_link[0][-1], thread, Manga_main_dir, chapter)
         elif len(list_chap) == 1 :
             chap_fetched = chapter_fetch(i[-1])
@@ -61,6 +63,8 @@ def main(manga_title, chap_list, description, status, quality_mode, base_url, Ma
             if chap_img == None :
                 continue
             images_link = get_images_links(chap_img, base_url)
+            if images_link == None :
+                return 1
             dl_chapter(manga_title, chapter_zip_name, chapter_folder, images_link[0][-1], thread, Manga_main_dir, chapter)
         else :
             continue

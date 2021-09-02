@@ -23,10 +23,10 @@ def get_altTitles_lang(resp, lang, *n) :
         elif 0 <= n[0] < len(altTitles_lang) :
             return altTitles_lang[n[0]]
         elif n[0] >= len(altTitles_lang) :
-            print("index out of range using the first one in the list.")
+            #print("index out of range using the first one in the list.")
             return altTitles_lang[0]
     else : 
-        print("No altTitles with that language found; using default title.")
+        #print("No altTitles with that language found; using default title.")
         return get_default_title(resp)
         
 def get_title(resp, langWithIndex) :

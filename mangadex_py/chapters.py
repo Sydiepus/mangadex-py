@@ -142,7 +142,11 @@ def scanlation_group_selector(list_chap, quality_mode) :
         fetch = chapter_fetch(i[-1])
         fetched_list = fetched_list[:] + fetch
     for i in fetched_list :
-        images_list = images_list[:] + get_chapter_images([i], quality_mode)
+        images = get_chapter_images([i], quality_mode)
+        if images == None :
+            continue
+        else :
+            images_list = images_list[:] + images
     for i in images_list :
         len_list.append(len(i[-1]))
     index = len_list.index(max(len_list))

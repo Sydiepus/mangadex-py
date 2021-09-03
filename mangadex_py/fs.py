@@ -99,3 +99,6 @@ def remove_special_character(string) :
         return remspc(string)
     else :
         return string
+
+def replace_single_quote(string) :
+    return string.replace("\'", "\"")

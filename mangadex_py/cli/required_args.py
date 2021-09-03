@@ -1,4 +1,5 @@
 #https://stackoverflow.com/a/11155124
+
 def _required_args(args_parser) :
     args = args_parser.add_mutually_exclusive_group()
     args.add_argument(
@@ -20,4 +21,15 @@ def _required_args(args_parser) :
         help=(
             '%(metavar)s, i.e. folder containing the links for the mangas to be downloaded.'
         )
-    )   
+    )
+    args.add_argument(
+        "-A",
+        "--auth",
+        metavar="AUTH",
+        default=False,
+        const=True,
+        nargs="?",
+        help=(
+            "%(metavar)s, i.e initialize authentication will use the auth.json to authenticate."
+        )
+    )

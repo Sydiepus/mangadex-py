@@ -90,4 +90,9 @@ def get_uuid(url) :
             if len(uuid) == 1 :
                 return uuid[0]
     else :
-        print("Please enter a mangadex url")
+        uuid = re.findall(".+-.+-.+-.+", url)
+        print(uuid)
+        if len(uuid) == 1 :
+            return uuid[0]
+        else :
+            print("Please enter a mangadex url")

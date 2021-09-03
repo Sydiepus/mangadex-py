@@ -63,6 +63,10 @@ Example :
 https://mangadex.org/title/32712fc7-466c-4f59-a481-9c608d374c66
 https://mangadex.org/title/e78a489b-6632-4d61-b00b-5206f5b8b22b, reincarnated as a slime
 ```
+## -A / --auth option
+you'll be promted to enter username/email and password.  
+The program will log you in into your account and save the token used for authentication that will expire in 1 month i think.   
+This feature is still in development expect a follow list download in the next release.
 ## Help
 ```
 mangadex-py -h 

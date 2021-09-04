@@ -66,7 +66,13 @@ https://mangadex.org/title/e78a489b-6632-4d61-b00b-5206f5b8b22b, reincarnated as
 ## -A / --auth option
 you'll be promted to enter username/email and password.  
 The program will log you in into your account and save the token used for authentication that will expire in 1 month i think.   
-This feature is still in development expect a follow list download in the next release.
+## -fl / --follow-list
+this option will let you download the follow list or library [mangadex link](https://mangadex.org/titles/follows)
+## -fldl / --follow-list-download
+this option will update the follow.list and start downloading it.  
+the follow.list contains all the manga [in your account](https://mangadex.org/titles/follows) any change to it delete/add will affect which manga are going to be downloaded.
+i.e if you remove one from your library the program won't update it.
+and if you add a new one it'll download it.
 ## Help
 ```
 mangadex-py -h 

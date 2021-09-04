@@ -91,7 +91,6 @@ def get_uuid(url) :
                 return uuid[0]
     else :
         uuid = re.findall(".+-.+-.+-.+", url)
-        print(uuid)
         if len(uuid) == 1 :
             return uuid[0]
         else :

@@ -102,3 +102,11 @@ def remove_special_character(string) :
 
 def replace_single_quote(string) :
     return string.replace("\'", "\"")
+
+def write_follow_list(uuid_list) :
+    file = os.path.join(current_working_dir, "follow.list")
+    f = open(file, "w")
+    for i in uuid_list :
+        f.write(i + "\n")
+    f.close()
+    return file

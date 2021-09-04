@@ -11,8 +11,8 @@ retries = Retry(total=5,
 s.mount('http://', HTTPAdapter(max_retries=retries))
 s.mount('https://', HTTPAdapter(max_retries=retries))
 
-def get(url, headers=None) :
-    request = s.get(url, headers=headers)
+def get(url, headers=None, params=None) :
+    request = s.get(url, headers=headers, params=params)
     return request
 
 def post(url, headers=None, json=None) :

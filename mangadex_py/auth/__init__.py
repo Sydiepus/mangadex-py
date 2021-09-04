@@ -79,4 +79,4 @@ def auth() :
             token, refresh = refresh_token(refresh)
     else :
         token, refresh = auth_file_setup()
-            
+    return token

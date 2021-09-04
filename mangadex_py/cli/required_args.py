@@ -22,14 +22,3 @@ def _required_args(args_parser) :
             '%(metavar)s, i.e. folder containing the links for the mangas to be downloaded.'
         )
     )
-    args.add_argument(
-        "-A",
-        "--auth",
-        metavar="AUTH",
-        default=False,
-        const=True,
-        nargs="?",
-        help=(
-            "%(metavar)s, i.e initialize authentication will use the auth.json to authenticate."
-        )
-    )

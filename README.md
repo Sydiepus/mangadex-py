@@ -69,9 +69,9 @@ The program will log you in into your account and save the token used for authen
 ## -fl / --follow-list
 this option will let you download the follow list or library [mangadex link](https://mangadex.org/titles/follows)
 ## -fldl / --follow-list-download
-this option will update the follow.list and start downloading it.  
-the follow.list contains all the manga [in your account](https://mangadex.org/titles/follows) any change to it delete/add will affect which manga are going to be downloaded.
-i.e if you remove one from your library the program won't update it.
+this option will update the follow.list and start downloading it.    
+the follow.list contains all the manga [in your account](https://mangadex.org/titles/follows) any change to it delete/add will affect which manga are going to be downloaded.  
+i.e if you remove one from your library the program won't update it.  
 and if you add a new one it'll download it.
 ## Help
 ```
@@ -80,10 +80,4 @@ mangadex-py -h
 mangadex-py --help
 ```
 ## Notice
-**This is the first release of the program bugs are to be expected.**
-## TODO
-- ~~Complete the File support for bulk downloading.~~ [Done]
-- Add threaded download for zip fix.
-- ~~Try to make the chapter_fetch more efficient.~~ [Done]
-- ~~Add a progress bar.~~ [Done]
-- ~~Add option to use a custom manga name for folder.~~ [Done]
+**The program is still in development please report any bugs.**

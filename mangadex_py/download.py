@@ -5,6 +5,7 @@ import os
 from tqdm import tqdm
 from mangadex_py.chapters import chapter_fetch, get_chapter_images, get_images_links, scanlation_group_selector, sort_chap_with_multi_scanlation
 import re
+from .manga import naming_main
 
 def new_download(manga_title, chapter_folder, images_list, thread, chapter) :
     if thread == 0 :
@@ -43,17 +44,12 @@ def dl_chapter(manga_title, chapter_zip_name, chapter_folder, images_list, threa
         print(f"skipping {os.path.split(chapter_zip_name)[-1]}")
 
 
-def main(manga_title, chap_list, description, status, quality_mode, base_url, volumes, Manga_main_dir="Manga", thread=0) :
+def main(manga_title, chap_list, description, status, quality_mode, base_url, volumes, Manga_main_dir="Manga", thread=0, zip_name=None) :
     create_manga_main_dir(Manga_main_dir)
     create_manga_dir(manga_title, Manga_main_dir)
     write_series_json(manga_title, description, status, Manga_main_dir)
     for i in chap_list[0:] : #get the tuple that contains the chapter num along with the chapter hash
-        if volumes != [] and len(i) == 3:
-            contain_vol = True
-            chapter = f"vol-{i[1]}-chapter-{i[0]}"
-        else :
-            chapter = f"chapter-{i[0]}"
-            contain_vol = False
+        chapter, contain_vol = naming_main(volumes, i, zip_name)
         chapter_folder = create_manga_chap_dir(manga_title, chapter, Manga_main_dir)
         chapter_zip_name = chapter_zip_name_var(manga_title, chapter_folder, Manga_main_dir)
         list_chap = sort_chap_with_multi_scanlation(i, chap_list, contain_vol)

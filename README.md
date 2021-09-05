@@ -73,6 +73,9 @@ this option will update the follow.list and start downloading it.
 the follow.list contains all the manga [in your account](https://mangadex.org/titles/follows) any change to it delete/add will affect which manga are going to be downloaded.  
 i.e if you remove one from your library the program won't update it.  
 and if you add a new one it'll download it.
+## --zip_name 
+this option will let you use a custom naming scheme.   
+use "{}" to specify chapter number position from right to left.   
 ## Help
 ```
 mangadex-py -h 

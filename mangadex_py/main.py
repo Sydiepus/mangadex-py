@@ -3,7 +3,7 @@ import mangadex_py.chapters as chapter
 import mangadex_py.download as download
 from tqdm import tqdm
 
-def main(url, langWithIndex, quality_mode, Manga_main_dir, thread, manga_name=None) :
+def main(url, langWithIndex, quality_mode, Manga_main_dir, thread, manga_name=None, zip_name=None) :
     bar = tqdm(desc="Initializing", total=5)
     uuid = manga.get_uuid(url)
     if manga_name == None :
@@ -25,4 +25,4 @@ def main(url, langWithIndex, quality_mode, Manga_main_dir, thread, manga_name=No
     bar.update(1)
     bar.close()
     print("starting download :")
-    download.main(title, chap_list, desc, status, quality_mode, base_url, volumes, Manga_main_dir, thread)
+    download.main(title, chap_list, desc, status, quality_mode, base_url, volumes, Manga_main_dir, thread, zip_name)

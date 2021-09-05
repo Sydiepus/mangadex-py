@@ -52,3 +52,12 @@ def _download_args(args_parser) :
             'set a custom manga name for the folder and everything else. '
         )
     )
+    args.add_argument(
+        '--zip_name',
+        type=str,
+        metavar="zip_name",
+        default=None,
+        help=(
+            'set a custom name for the zip file. '
+        )
+    )

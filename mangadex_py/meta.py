@@ -3,7 +3,7 @@
 author = 'Sydiepus'
 license_type = 'MIT'
 email = 'sydiepus@gmail.com'
-version = '1.305'
+version = '1.306'
 repo_name = 'Sydiepus/mangadex-py'
 repo_url = 'https://github.com/%s' % repo_name
 

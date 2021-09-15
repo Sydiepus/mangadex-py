@@ -53,11 +53,11 @@ def get_images_links(chapters_images, baseurl) :
     return images_links
 
 def get_info(resp) :
-    for i in resp["results"] :
-        tmp_lang = i["data"]["attributes"]["translatedLanguage"]
-        tmp_chap = i["data"]["attributes"]["chapter"]
+    for i in resp["data"] :
+        tmp_lang = i["attributes"]["translatedLanguage"]
+        tmp_chap = i["attributes"]["chapter"]
         try :
-            tmp_vol = i["data"]["attributes"]["volume"]
+            tmp_vol = i["attributes"]["volume"]
             if tmp_vol not in avail_vol and tmp_vol != None :
                 avail_vol.append(tmp_vol)
         except KeyError :
@@ -87,13 +87,13 @@ def get_manga_chapters_info(uuid) :
 
 def save_lang_time(resp) :
     get_info(resp)
-    for i in resp["results"] :
+    for i in resp["data"] :
         try :
-            tmp_vol = i["data"]["attributes"]["volume"]
-            tmp_chap = i["data"]["attributes"]["chapter"]
+            tmp_vol = i["attributes"]["volume"]
+            tmp_chap = i["attributes"]["chapter"]
             if tmp_chap not in avail_lang_chap :
                 avail_lang_chap.append(tmp_chap)
-            tmp_id = i["data"]["id"]
+            tmp_id = i["id"]
             if tmp_vol == None :
                 avail_lang_chap_list.append(("Oneshot", tmp_id) if tmp_chap == None else (tmp_chap, tmp_id))
             else :
@@ -115,13 +115,13 @@ def get_chapter_info_by_lang(uuid, total_chap, lang="en") :
             time.sleep(0.25)
             resp = chapter_req.json()
             get_info(resp)
-            for i in resp["results"] :
+            for i in resp["data"] :
                 try :
-                    tmp_vol = i["data"]["attributes"]["volume"]
-                    tmp_chap = i["data"]["attributes"]["chapter"]
+                    tmp_vol = i["attributes"]["volume"]
+                    tmp_chap = i["attributes"]["chapter"]
                     if tmp_chap not in avail_lang_chap :
                         avail_lang_chap.append(tmp_chap)
-                    tmp_id = i["data"]["id"]
+                    tmp_id = i["id"]
                     if tmp_vol == None :
                         avail_lang_chap_list.append(("Oneshot", tmp_id) if tmp_chap == None else (tmp_chap, tmp_id)) #https://github.com/frozenpandaman/mangadex-dl/blob/3883aa49d52e2c7c3f914f43a6e5fdd3aeebbedf/mangadex-dl.py#L102
                     else :

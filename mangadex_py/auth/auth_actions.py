@@ -11,15 +11,15 @@ def get_follow_list(token) :
     total = req["total"]
     uuid_list = list()
     if total <= 100 :
-        for i in req["results"] :
-            uuid = i["data"]["id"]
+        for i in req["data"] :
+            uuid = i["id"]
             uuid_list.append(uuid)
     else :
         offset += 100
         while offset <= total :
             req = http.get(api_url + "follows/manga", headers=bearer, params=body).json()
-            for i in req["results"] :
-                uuid = i["data"]["id"]
+            for i in req["data"] :
+                uuid = i["id"]
                 uuid_list.append(uuid)
     file = write_follow_list(uuid_list)
     return file

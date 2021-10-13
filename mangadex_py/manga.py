@@ -71,7 +71,7 @@ def get_status(resp) :
 #         tags_list.append(i["attributes"]["name"][a[0]])
 #     return tags_list
 
-def get_info(uuid, *langWithIndex) :
+def get_info(uuid, langWithIndex) :
     request = http.get(f"{api_url}manga/{uuid}")
     if request.status_code == 200 :
         resp = request.json()

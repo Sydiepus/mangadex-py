@@ -58,6 +58,7 @@ The file should be in the following format :
 ``` 
 url1, manga name
 url2
+uuid1
 url3, manga name
 ```
 Example :

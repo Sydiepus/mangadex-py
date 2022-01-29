@@ -1,11 +1,10 @@
 from unicodedata import bidirectional
 from mangadex_py.fs import add_image_zip, chapter_zip_name_var, create_manga_chap_dir, create_manga_dir, create_manga_main_dir, force_create_manga_chap_dir, get_images_in_zip, write_series_json, zip_chapter_folder, add_image_zip, force_create_manga_chap_dir
 import mangadex_py.download_methods as download_methods
-import os
+import os, re
 from tqdm import tqdm
 from mangadex_py.chapters import chapter_fetch, get_chapter_images, get_images_links, scanlation_group_selector, sort_chap_with_multi_scanlation
-import re
-from .manga import naming_main
+from .naming import naming_main
 
 def new_download(manga_title, chapter_folder, images_list, thread, chapter) :
     if thread == 0 :

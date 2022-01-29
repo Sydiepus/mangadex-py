@@ -17,7 +17,7 @@ def _download_args(args_parser) :
         '--language',
         type=str,
         metavar="lang",
-        default="en",
+        default=None,
         help=(
             'Set the language in which the chapters should be downloaded. '
         )

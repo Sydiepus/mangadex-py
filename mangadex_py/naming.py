@@ -1,4 +1,4 @@
-def rename_main(naming, digits, curly_count, special=None) :
+def rename_main(naming, digits, curly_count, special) :
     if len(digits) <= curly_count :
         return rename(naming, digits, special)
     else :
@@ -7,7 +7,7 @@ def rename_main(naming, digits, curly_count, special=None) :
         new_naming = naming[:index] + "{}" * diff + naming[index:]
         return rename(new_naming, digits, special)
 
-def rename(naming, digits, special=None) :
+def rename(naming, digits, special) :
     b = naming
     if special == None :
         for i in range(0, len(digits) + 1) :
@@ -43,16 +43,13 @@ def custom_naming_main(chapter_number, naming) :
         else :
             return rename_main(naming, digits, a)
 
-def naming_main(volumes, i, zip_name=None) :
+def naming_main(vol, chap, zip_name) :
     if zip_name == None :
-        if volumes != [] and len(i) == 3:
-            contain_vol = True
-            chapter = f"vol-{i[1]}-chapter-{i[0]}"
-            return chapter, contain_vol
+        if vol != None :
+            chapter = f"vol-{vol}-chapter-{chap}"
+            return chapter
         else :
-            chapter = f"chapter-{i[0]}"
-            contain_vol = False
-            return chapter, contain_vol
+            chapter = f"chapter-{chap}"
+            return chapter
     else :
-        contain_vol = False
-        return custom_naming_main(i[0], zip_name), contain_vol
+        return custom_naming_main(chap, zip_name), 

@@ -2,7 +2,7 @@ import mangadex_py.http as http
 import re 
 from .fs import remove_special_character
 
-api_url = "https://api.mangadex.org/"
+api_url = "https://api.mangadex.org"
 
 def get_default_title(resp) :
     title = list(resp["title"].values())[0]
@@ -49,7 +49,7 @@ def get_status(resp) :
     return status
 
 def get_info(uuid, langWithIndex) :
-    request = http.get(f"{api_url}manga/{uuid}")
+    request = http.get(f"{api_url}/manga/{uuid}")
     if request.status_code == 200 :
         resp = request.json()["data"]["attributes"]
         title = get_title(resp, langWithIndex)

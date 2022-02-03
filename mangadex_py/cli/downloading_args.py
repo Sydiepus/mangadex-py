@@ -17,7 +17,7 @@ def _download_args(args_parser) :
         '--language',
         type=str,
         metavar="lang",
-        default=None,
+        default="en",
         help=(
             'Set the language in which the chapters should be downloaded. '
         )
@@ -39,8 +39,8 @@ def _download_args(args_parser) :
         metavar="quality_mode",
         default="data",
         help=(
-            'change the quality mode from data to dataSaver. '
-            'data-saver will download a compressed image instead of upload quality.'
+            'change the quality mode from "data" to "dataSaver". '
+            '"dataSaver" will download a compressed image instead of upload quality.'
         )
     )
     args.add_argument(

@@ -45,11 +45,12 @@ def custom_naming_main(chapter_number, naming) :
 
 def naming_main(vol, chap, zip_name) :
     if zip_name == None :
-        if vol != None :
+        if vol != "none" :
             chapter = f"vol-{vol}-chapter-{chap}"
-            return chapter
+        elif chap == "Oneshot" :
+            chapter = chap
         else :
             chapter = f"chapter-{chap}"
-            return chapter
+        return chapter
     else :
         return custom_naming_main(chap, zip_name), 

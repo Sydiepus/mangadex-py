@@ -53,14 +53,11 @@ def main(manga_title, chap_list, description, status, quality_mode, Manga_main_d
     create_manga_main_dir(Manga_main_dir)
     create_manga_dir(manga_title, Manga_main_dir)
     write_series_json(manga_title, description, status, Manga_main_dir)
-    for vol, chap, id, fetched in chap_list : #get the volume, chapter and id. 
+    for vol, chap, id_list in chap_list : #get the volume, chapter and ids. 
         chapter = naming_main(vol, chap, zip_name) # how to name the chapters ?
         chapter_folder = create_manga_chap_dir(manga_title, chapter, Manga_main_dir) #create the manga directory.
         chapter_zip_name = chapter_zip_name_var(manga_title, chapter_folder, Manga_main_dir) # how to name the chapter zip file ?
-        if fetched :
-            base_url, chap_hash, chap_img = id
-        else :
-            base_url, chap_hash, chap_img = get_chapter_images(id, quality_mode) #get the necessary stuff for the download, will return None in case of error.
+        base_url, chap_hash, chap_img = get_chapter_images(id_list, quality_mode) #get the necessary stuff for the download, will return None in case of error.
         if chap_hash == None :
             continue
         images_link = create_img_links(base_url, chap_hash, chap_img, quality_mode)

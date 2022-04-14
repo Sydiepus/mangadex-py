@@ -1,11 +1,11 @@
 from .main import main
 
-def file_main(file, langWithIndex, quality_mode, Manga_main_dir, thread, zip_name=None) :
+def file_main(file, langWithIndex, quality_mode, Manga_main_dir, thread, zip_name, sel_chap) :
     f = open(file, 'r')
     lines = f.readlines()
     for i in lines :
         url_name = i.split(",")
         if len(url_name) > 1 :
-            main(url_name[0], langWithIndex, quality_mode, Manga_main_dir, thread, url_name[1], zip_name)
+            main(url_name[0], langWithIndex, quality_mode, Manga_main_dir, thread, url_name[1], zip_name, sel_chap)
         else :
-            main(url_name[0], langWithIndex, quality_mode, Manga_main_dir, thread, zip_name=zip_name)
+            main(url_name[0], langWithIndex, quality_mode, Manga_main_dir, thread, zip_name=zip_name, sel_chap=sel_chap)

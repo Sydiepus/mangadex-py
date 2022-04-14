@@ -79,6 +79,12 @@ and if you add a new one it'll download it.
 ## --zip_name 
 this option will let you use a custom naming scheme.   
 use "{}" to specify chapter number position from right to left.   
+## -sc / --selchap
+Select chapters to be downloaded. 
+- Can be singles seperated by ' ' (a space) e.g : "1 2 3 60"
+- Or a range seperated by '-' e.g : "6-9 11-90"
+- You can select specific chapters and a range e.g : '1 2 5-9'
+this will download the following chapters : 1 2 5 6 7 8 9
 ## Help
 ```
 mangadex-py -h 

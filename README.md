@@ -4,6 +4,8 @@
 ![GitHub issues](https://img.shields.io/github/issues/Sydiepus/mangadex-py)
 
 A manga downloader for [MangaDex.org](https://mangadex.org/), Using the new [API](https://api.mangadex.org/docs.html).
+
+small note: an object oriented version of the project can be found at [Manrododex](https://github.com/Sydiepus/Manrododex).
 ## Inspiration
 If these projects weren't available, mangadex-py would be a gallimaufry of python code.  
 some snippets were taken from them.  
